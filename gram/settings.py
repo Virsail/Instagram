@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'tinymce',
     'bootstrap3',
     'rest_framework',
-    'pyuploadcare.dj'
+    'pyuploadcare.dj',
 ]
 
 

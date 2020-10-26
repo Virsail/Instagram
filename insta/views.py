@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .forms import SignUpForm
+from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, CommentForm
 #from .models import Event, NewsLetterRecipients
 import datetime as dt
 from .models import Post, Comment, Profile, Follow
@@ -13,6 +14,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.generic import RedirectView
 from rest_framework.views import APIView
+from rest_framework import authentication, permissions
 
 
 

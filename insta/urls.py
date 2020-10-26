@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from insta.views import PostLikeToggle, PostLikeAPIToggle
 from . import views
 from django.contrib import admin
 from django.conf import settings
