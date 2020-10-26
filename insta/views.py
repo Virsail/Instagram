@@ -101,7 +101,7 @@ def profile(request, username):
         'images': images,
 
     }
-    return render(request, 'instagram/profile.html', params)
+    return render(request, 'instaflex/myprofile.html', params)
 
 
 @login_required(login_url='login')
@@ -125,7 +125,7 @@ def user_profile(request, username):
         'follow_status': follow_status
     }
     print(followers)
-    return render(request, 'instagram/user_profile.html', params)
+    return render(request, 'instaflex/user_profile.html', params)
 
 @login_required(login_url='login')
 def post_comment(request, id):

@@ -10,7 +10,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     url('^$', views.home,name='Instaflex'),
     url(r'^signUp/$', views.signUp, name='signUp'),
-    url(r'^what_profile/(?P<profile_id>\d+)', views.my_profile, name='profile'),
     url(r'^account/', include('django.contrib.auth.urls')),
     url(r'^profile/<username>/', views.profile, name='profile'),
     url(r'^user_profile/<username>/', views.user_profile, name='user_profile'),
