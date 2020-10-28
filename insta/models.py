@@ -42,6 +42,12 @@ class Image(models.Model):
     def __str__(self):
        return str(self.caption)
 
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
 class Follow(models.Model):
     users=models.ManyToManyField(User,related_name='follow')
     current_user=models.ForeignKey(User,related_name='pd_user',null=True)
@@ -64,10 +70,17 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment
 
-    def save_comment(self):
-        self.save()
+
 
     @classmethod
     def get_comment(cls):
         comment = Comment.objects.all()
         return comment
+
+
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()

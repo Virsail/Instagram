@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
-from .models import *
+from .models import Profile, Comment, Image, Follow,
 from .forms import SignUpForm, StoryForm, CommentForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
