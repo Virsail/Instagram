@@ -81,23 +81,20 @@ def profile(request,profile_id):
 
     return render(request,"profile.html",{"profile":profile,"images":images})
 
-
 @login_required(login_url='/accounts/login/')
 def search_results(request):
-    current_user = request.user
-    profile = Profile.get_profile()
-    if 'username' in request.GET and request.GET["username"]:
-        search_term = request.GET.get("username")
-        searched_name = Profile.find_profile(search_term)
-        message = search_term
+    
+    if 'insta' in request.GET and request.GET["insta"]:
+        search_term = request.GET.get("insta")
+        searched_instas = Insta.search_by_title(search_term)
+        message = f"{search_term}"
 
-        return render(request,'search.html',{"message":message,
-                                             "profiles":profile,
-                                             "user":current_user,
-                                             "username":searched_name})
+        return render(request, 'search.html',{"message":message,"instas": searched_instas})
+
     else:
-        message = "You haven't searched for any user"
-        return render(request,'search.html',{"message":message})
+     message = "Connect with people from all over the wolrd"
+     return render(request, 'search.html',{"message":message})
+
 
 @login_required(login_url='/accounts/login/')
 def get_image_by_id(request,image_id):

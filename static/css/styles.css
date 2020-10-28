@@ -114,6 +114,17 @@ h3 {
   animation-name: fade;
   animation-duration: 1.5s;
 }
+.berry {
+    background-image: url(../images/ig2.jpeg);
+}
+h6 {
+    text-align: center;
+    color: yellow;
+}
+
+.choppahateniggas {
+    background-image: url(../images/—Pngtree—instagram\ icon\ instagram\ logo_3588824.png);
+}
 
 @-webkit-keyframes fade {
   from {opacity: .4}
