@@ -30,142 +30,100 @@ h3 {
     }
 
 }
+* {box-sizing:border-box}
 
-h1{
-    color:green;
-}
-.form-text, .asteriskField{
-    display:none;
-}
-.reg{
-    background-color:#f9f9f9;
-}
-.alert{
-    margin:0;
-    padding:0;
-}
-.alert ul li {
-    list-style-type: none;
-    padding:0;
-    margin:0;
-    font-size:12px;
-}
-.navbar{
-    background-color:green;
-}
-.instaicon{
-    display: inline-block;
-    background-image: url(/static/images/96319a506a03.png);
-    padding:0px;
-}
-.instaglyph{
-    display: inline-block;
-    background-image: url(/static/images/868a059b8fc8.png);
-    margin:8px;
-}
-.modal-body a{
-    text-decoration:none;
-    color:black;
-    text-align:center;
-}
-.hearticon{
-    color:black;
-    font-size:30px;
-    margin-left:-10px;
-    margin-right:-10px;
-}
-.viewall a{
-    text-decoration:none;
-    color:grey;
-}
-.disc{
-    background-position: -458px -250px;
-    width: 24px;
-    height: 24px;
-}
-.like{
-    background-position: -458px -328px;
-    height: 24px;
-    width: 24px;
-    margin-left: 30px;
-}
-.pers{
-    background-position: -157px -357px;
-    height: 24px;
-    width: 24px;
-    margin-left: 30px;
-}
-.logo{
-    background-position: -98px -203px;
-    height: 35px;
-    width: 176px;
-}
-.mainicon{
-    background-position: -401px -388px;
-    height: 30px;
-    width: 30px;
-    margin-right: 146px;
-}
-.main{
-    margin-top:5%;
-}
-body{
-    background-color:#f9f9f9;
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
 }
 
-.account-img {
-    height: 165px;
-    width: 165px;
+/* Hide the images by default */
+.mySlides {
+  display: none;
 }
-.user-img {
-    height: 55px;
-    width: 55px;
-    margin-top:25px;
-}
-.inname{
-    font-size:14px;
-}
-.user-details{
-    margin-left:-30px;
-}
-.userinfo{
-    margin-top:24px;
-}
-.username{
-    font-size:30px;
-}
-#cog{
-    font-size:24px;
-}
-.card-body{
-    margin:0px;
-    padding:0px;
-}
-.user{
-    color:black;
-}
-.user a:hover{
-    text-decoration:none;
-}
-.col-form-label{
-    font-size:14;
-}
-#overlay{
-    display: none;
-    color: black;
-    width: 100%;
-    height: 100%;
-    background-color:rgba(37, 36, 36, 0.456);
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    text-align: center;
-    padding-top: 30%;
-}
-.card:hover #overlay{
-    display: block;
 
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
 }
-.jamsession {
-    background-color: green;
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+.body {
+    background: url(./tiger-3389015_1920.jpg);
 }
