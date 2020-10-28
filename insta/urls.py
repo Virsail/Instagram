@@ -2,29 +2,21 @@ from django.conf.urls import url, include
 from . import views
 from django.contrib import admin
 from django.conf import settings
-from django.conf.urls.static import static 
-
-
-
+from django.conf.urls.static import static
 
 # app_name = 'insta'
 
 urlpatterns = [
-    url(r'^$', views.home,name='home'),
-    url(r'^accounts/profile/', views.add_profile, name='add_profile'),
+    url(r'^$', views.feeds,name='feeds'),
+    url(r'^registerPage/$', views.registerPage, name='registerPage'),
     url(r'^profile/(\d+)', views.profile, name='profile'),
     url(r'^search/$', views.search_results, name='search_results'),
-    url(r'^image/(\d+)',views.get_image_by_id,name ='image'),
-    url(r'^new/profile$', views.add_profile, name='add_profile'),
-    url(r'^upload/', views.update_image, name='upload'),
-    url(r'^comment/(?P<pk>\d+)',views.add_comment,name='comment'),
+    url(r'^post/(\d+)',views.get_post_by_id,name ='post'),
+    url(r'^story/', views.story, name='story'),
+    url(r'^comment/(?P<pk>\d+)',views.comment,name='comment'),
     url(r'^like/(?P<operation>.+)/(?P<pk>\d+)',views.like, name='like'),
-    url(r'^all/(?P<pk>\d+)', views.all, name='all'),
-    url(r'^signup/$', views.signup, name='signup'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        views.activate, name='activate'),
+    url(r'^pillow/(?P<pk>\d+)', views.pillow, name='pillow'),
     url(r'^follow/(?P<operation>.+)/(?P<id>\d+)',views.follow,name='follow'),
-
 
 ]
 if settings.DEBUG:

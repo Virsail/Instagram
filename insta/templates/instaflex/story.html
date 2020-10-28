@@ -1,0 +1,18 @@
+{%extends 'instaflex/base.html'%}
+{% block content %}
+{{ block.super}}
+{% load bootstrap3 %}
+  <title>Instaflex Stories</title>
+  {{form.media}}
+
+
+
+<div class="card mx-auto" style="max-width:50rem; margin-top:50px;">
+  <form  action="{%url 'story'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-success btn-lg" value="Post">
+  </form>
+</div>
+{% endblock %}

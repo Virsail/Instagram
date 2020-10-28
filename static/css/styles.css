@@ -38,6 +38,12 @@ h3 {
   position: relative;
   margin: auto;
 }
+.stripperbowl {
+  background-image: url(../images/grid2.png);
+}
+.bolwoyo {
+  background-image: url(../images/grid.png);
+}
 
 /* Hide the images by default */
 .mySlides {
@@ -124,6 +130,12 @@ h6 {
     text-align: center;
     color: yellow;
 }
+#chatcomment {
+  background-color: green;
+}
+#like {
+  color: green;
+}
 h4 {
   color: white;
   text-align: center;
@@ -151,4 +163,8 @@ h4 {
 }
 .body {
     background: url(./tiger-3389015_1920.jpg);
+}
+
+h5 {
+  text-align: center;
 }

@@ -5,7 +5,7 @@
     <div class="navbaronly">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'home' %}">Home Feed
+        <a class="navbar-brand" href="{% url 'feeds' %}">Home Feed
            <img src="{%static 'images/nav.png'%}" alt="">
         </a>
       </div>
@@ -46,10 +46,7 @@
         </a>
       </li>
     </div>
-
-    <p><a href="{% url 'add_profile' %}" class="btn btn-success"><i class="fas fa-edit"></i>create profile</a></p>
-
-    <p><a href="{% url 'upload' %}" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i>upload photo</a>
+    <p><a href="{% url 'story' %}" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i>upload photo</a>
     </div>
     </div>
     </nav>

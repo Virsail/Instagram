@@ -1,9 +1,9 @@
-{%extends 'base.html'%}
+{%extends 'instaflex/base.html'%}
 {% block content %}
 {{ block.super}}
 {% load bootstrap3 %}
-<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <title>Comments</title>
+
+  <title>Chat Comments</title>
   {{form.media}}
 
 
@@ -16,9 +16,4 @@
     <input type="submit" class="btn btn-success btn-lg" value="Post">
   </form>
 </div>
-   {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  {% bootstrap_javascript %}
-{% endblock %}
 {% endblock %}

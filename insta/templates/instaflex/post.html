@@ -1,10 +1,8 @@
-{%extends 'base.html'%}
+{%extends 'instaflex/base.html'%}
 {% block content %}
 {{ block.super}}
 {% load bootstrap3 %}
-<br>
-<br>
-<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
 <div class="container">
 
   <div class="card-columns">
@@ -14,7 +12,7 @@
     </div>
     <div class="card-body">
       <p>Caption: {{image.caption}}</p>
-      <p>Poster: {{image.user}}</p>
+      <p>Posted by: {{image.user}}</p>
       <p>Comments: {{comment.comment}}</p>
 
 
@@ -34,9 +32,5 @@
   </form>
   </div>
    {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  {% bootstrap_javascript %}
-  {% endblock %}
 </div>
 {% endblock %}
