@@ -117,19 +117,26 @@ h3 {
 .berry {
     background-image: url(../images/ig2.jpeg);
 }
+.navbaronly {
+  background-image: url(../images/landing.png);
+}
 h6 {
     text-align: center;
     color: yellow;
 }
-.savage {
-  background-image: url(../images/—Pngtree—instagram\ icon\ instagram\ logo_3588824.png);
+h4 {
+  color: white;
+  text-align: center;
+}
+.collapse navbar-collapse {
+  background-color: black;
 }
 .migo {
   align-items: flex-end;
   float: right;
 }
 
-.choppahateniggas {
+.mode {
     background-image: url(../images/—Pngtree—instagram\ icon\ instagram\ logo_3588824.png);
 }
 
