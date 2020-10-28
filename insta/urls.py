@@ -1,26 +1,31 @@
 from django.conf.urls import url, include
-from insta.views import PostLikeToggle, PostLikeAPIToggle
 from . import views
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static 
 
+
+
+
 # app_name = 'insta'
 
 urlpatterns = [
-    url('^$', views.home,name='Instaflex'),
-    url(r'^signUp/$', views.signUp, name='signUp'),
-    url(r'^account/', include('django.contrib.auth.urls')),
-    url(r'^profile/<username>/', views.profile, name='profile'),
-    url(r'^user_profile/<username>/', views.user_profile, name='user_profile'),
-    url(r'^post/<id>', views.post_comment, name='comment'),
-    url(r'^post/<id>/like', PostLikeToggle.as_view(), name='liked'),
-    url(r'^api/post/<id>/like', PostLikeAPIToggle.as_view(), name='liked-api'),
-    url(r'^like', views.like_post, name='like_post'),
-    url(r'^search/$', views.search_results, name='search_results'),
-    url(r'^unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
-    url(r'^follow/<to_follow>', views.follow, name='follow')
-  
+    url(r'^$', views.home,name='home'),
+    url(r'^accounts/profile/', views.add_profile, name='add_profile'),
+    url(r'^profile/(\d+)', views.profile, name='profile'),
+    url(r'^search/', views.search_results, name='search_results'),
+    url(r'^image/(\d+)',views.get_image_by_id,name ='image'),
+    url(r'^new/profile$', views.add_profile, name='add_profile'),
+    url(r'^upload/', views.update_image, name='upload'),
+    url(r'^comment/(?P<pk>\d+)',views.add_comment,name='comment'),
+    url(r'^like/(?P<operation>.+)/(?P<pk>\d+)',views.like, name='like'),
+    url(r'^all/(?P<pk>\d+)', views.all, name='all'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
+    url(r'^follow/(?P<operation>.+)/(?P<id>\d+)',views.follow,name='follow'),
+
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

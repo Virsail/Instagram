@@ -1,62 +1,24 @@
-from django.forms import ModelForm
-from django.contrib .auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from pyuploadcare.dj.forms import ImageField
-from .models import Profile, Post, Comment
+from .models import *
 
-
-
-
-
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from .models import Profile, Post, Comment
-
-
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
-
-
-class UpdateUserForm(forms.ModelForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-
-    class Meta:
-        model = User
-        fields = ('username', 'email')
-
-
-class UpdateUserProfileForm(forms.ModelForm):
+class NewProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'location', 'profile_picture', 'bio']
+        exclude = ['user']
 
-
-class PostForm(forms.ModelForm):
+class UploadForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = ('image', 'caption')
-
+        model = Image
+        exclude =['posted_by','profile','likes']
 
 class CommentForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['comment'].widget = forms.TextInput()
-        self.fields['comment'].widget.attrs['placeholder'] = 'Add a comment...'
-
     class Meta:
         model = Comment
-        fields = ('comment',)
+        exclude =['poster','image']

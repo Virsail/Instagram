@@ -1,108 +1,69 @@
 from django.db import models
-from django.db import models
-import datetime as dt
 from django.contrib.auth.models import User
-from tinymce.models import HTMLField
-from pyuploadcare.dj.models import ImageField
 
 
 # Create your models here.
-
-
-from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_picture = models.ImageField(upload_to='images/', default='default.png')
-    bio = models.TextField(max_length=500, default="My Bio", blank=True)
-    name = models.CharField(blank=True, max_length=120)
-    location = models.CharField(max_length=60, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    profile_photo= models.ImageField(upload_to='profiles/',null=True)
+    bio= models.CharField(max_length=240, null=True)
 
-    def __str__(self):
-        return f'{self.user.username} Profile'
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
 
     def save_profile(self):
-        self.user
-
-    def delete_profile(self):
-        self.delete()
+        self.save()
 
     @classmethod
-    def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
+    def get_profile(cls):
+        profile = Profile.objects.all()
+        return profile
+
+    @classmethod
+    def find_profile(cls,search_term):
+        profile = Profile.objects.filter(user__username__icontains=search_term)
+        return profile
+
+class Image(models.Model):
+    posted_by = models.ForeignKey(User, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True)
+    insta_image = models.ImageField(upload_to='picha/',null=True)
+    caption = models.TextField(null=True)
+    likes = models.PositiveIntegerField(default=0)
 
 
-class Post(models.Model):
-    image = models.ImageField(upload_to='posts/')
-    name = models.CharField(max_length=250, blank=True)
-    caption = models.CharField(max_length=250, blank=True)
-    likes = models.ManyToManyField(User, related_name='likes', blank=True, )
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
-    created = models.DateTimeField(auto_now_add=True, null=True)
-
-    class Meta:
-        ordering = ["-pk"]
-
-    def get_absolute_url(self):
-        return f"/post/{self.id}"
-
-    @property
-    def get_all_comments(self):
-        return self.comments.all()
-
-    def save_image(self):
-        self.save()
-
-    def delete_image(self):
-        self.delete()
-
-    def total_likes(self):
-        return self.likes.count()
+    @classmethod
+    def get_images(cls):
+        images = Image.objects.all()
+        return images
 
     def __str__(self):
-        return f'{self.user.name} Post'
-
+       return str(self.caption)
 
 class Comment(models.Model):
-    comment = models.TextField()
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
-    created = models.DateTimeField(auto_now_add=True, null=True)
+    poster = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments',null=True)
+    comment = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return f'{self.user.name} Post'
+        return self.comment
 
-    class Meta:
-        ordering = ["-pk"]
-
-
-class Follow(models.Model):
-    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
-    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
-
-    def __str__(self):
-        return f'{self.follower} Follow'
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-    def save_category(self):
+    def save_comment(self):
         self.save()
 
-    def delete_category(self):
-        self.delete()
+    @classmethod
+    def get_comment(cls):
+        comment = Comment.objects.all()
+        return comment
+
+class Follow(models.Model):
+    users=models.ManyToManyField(User,related_name='follow')
+    current_user=models.ForeignKey(User,related_name='c_user',null=True)
+
+    @classmethod
+    def follow(cls,current_user,new):
+        friends,created=cls.objects.get_or_create(current_user=current_user)
+        friends.users.add(new)
+
+    @classmethod
+    def unfollow(cls,current_user,new):
+        friends,created=cls.objects.get_or_create(current_user=current_user)
+        friends.users.remove(new)
