@@ -4,20 +4,20 @@
 <div class="container">
 
   <div class="row">
-    {% if events%}
-      <h3>Found {{ events|length }} of searched term {{message}}</h3>
+    {% if instas%}
+      <h3>Found {{ instas|length }} of searched term {{message}}</h3>
     {% else %}
-      <h3> No event found {{message}}</h3>
+      <h3> No Insta found {{message}}</h3>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if events %}
-    {% for event in events %}
+  {% if instas %}
+    {% for insta in instas %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{event.title}}</h1>
+          <h1>{{insta.title}}</h1>
       </div>
     {% endfor %}
   {% endif %}
