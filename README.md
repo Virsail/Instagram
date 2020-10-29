@@ -6,7 +6,7 @@
 This is a clone of  Instagram that allows users to upload their  images ,follow other users like others users pictures and leave comments ,users also sign up and get to search for their followers.
 
 ##  Live Link  
- View App site [View Site]()  
+ View App site [View Site](https://nofucks.herokuapp.com/)  
   
  
 ## User Story  
