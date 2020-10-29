@@ -17,6 +17,8 @@ This is a clone of  Instagram that allows users to upload their  images ,follow 
 * See their profile with all their pictures they uploaded
 * Follow other users and see their activities on my timeline.  
 
+## Home Feeds
+
 
 ###  Search Result
 
