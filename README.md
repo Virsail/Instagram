@@ -19,6 +19,7 @@ This is a clone of  Instagram that allows users to upload their  images ,follow 
 
 ## Home Feeds
 
+![Screenshot from 2020-10-29 18-19-20](https://user-images.githubusercontent.com/66640798/97594828-1a6dbe80-1a14-11eb-86d1-5f4f2f0d04ad.png)
 
 ###  Search Result
 
