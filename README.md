@@ -17,11 +17,15 @@ This is a clone of  Instagram that allows users to upload their  images ,follow 
 * See their profile with all their pictures they uploaded
 * Follow other users and see their activities on my timeline.  
 
+
+
+## Search Results
+
 ## Home Feeds
 
 ![Screenshot from 2020-10-29 18-19-20](https://user-images.githubusercontent.com/66640798/97594828-1a6dbe80-1a14-11eb-86d1-5f4f2f0d04ad.png)
 
-###  Search Result
+###  Profile
 
 ![Screenshot from 2020-10-29 18-17-28](https://user-images.githubusercontent.com/66640798/97594299-99162c00-1a13-11eb-85e1-3fb6a58197c4.png)
 
