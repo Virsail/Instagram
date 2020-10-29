@@ -1,17 +1,14 @@
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
-from .models import Profile, Comment, Image, Follow,
+from .models import Profile, Comment, Image, Follow
 from .forms import SignUpForm, StoryForm, CommentForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
-
-
-
-
 
 
 # Create your views here.
@@ -54,7 +51,7 @@ def feeds(request):
 @login_required
 def profile(request,profile_id):
 
-    profile = Profile.objects.get(pk = profile_id)
+    profile = Profile.objects.get(user=request.user)
     images = Image.objects.filter(profile_id=profile).all()
 
     return render(request,"instaflex/profile.html",{"profile":profile,"images":images})
@@ -115,20 +112,19 @@ def comment(request,pk):
 def story(request):
     current_user = request.user
     profiles = Profile.get_profile()
-    for profile in profiles:
-        if profile.user.id == current_user.id:
-            if request.method == 'POST':
-                form = StoryForm(request.POST,request.FILES)
-                if form.is_valid():
-                    upload = form.save(commit=False)
-                    upload.posted_by = current_user
-                    upload.profile = profile
-                    upload.save()
-                    return redirect('feeds')
-            else:
-                form = StoryForm()
-            return render(request,'instaflex/story.html',{"user":current_user,"form":form})
+    profile = request.user.profile
+    if request.method == 'POST':
+        form = StoryForm(request.POST,request.FILES)
+        if form.is_valid():
+            upload = form.save(commit=False)
+            upload.posted_by = current_user
+            upload.profile = profile
+            upload.save()
+            return redirect('feeds')
 
+    else:
+        form = StoryForm()
+    return render(request,'instaflex/story.html',{"user":current_user,"form":form})
 
 
 def follow(request,operation,id):
@@ -151,7 +147,7 @@ def follow(request,operation,id):
 
 @login_required(login_url='/accounts/login/')
 def pillow(request, pk):
-    profile = Profile.objects.get(pk=pk)
+    profile = Profile.objects.get(user=request.user)
     images = Image.objects.all().filter(posted_by_id=pk)
     content = {
         "profile": profile,

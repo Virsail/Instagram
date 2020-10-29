@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from pyuploadcare.dj.models import ImageField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -12,8 +14,24 @@ class Profile(models.Model):
     bio= models.CharField(max_length=230, null=True)
 
 
+
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
+
+
     def save_profile(self):
         self.save()
+
+    @classmethod
+    def get_user_profile(cls, user):
+        profile = Profile.objects.filter(user=user)
+        return profile
+
+    
 
     @classmethod
     def get_profile(cls):

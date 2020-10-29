@@ -62,7 +62,7 @@ Open the application on your browser `127.0.0.1:8000`.
   
   
 ## Contact Information   
-If you have any question or contributions, please email me at [mikeycharlesm7@gmail.com]  
+ericmbagaya@gmail.com 
   
 
 ### License
